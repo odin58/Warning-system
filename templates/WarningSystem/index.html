@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  {% load static %}
+  {% csrf_token %}
+  <script src="{% static 'WarningSystem/js/p5.js' %}"></script>
+  <script src="{% static 'WarningSystem/js/p5.sound.js' %}"></script>
+<!--  <script src="{% static 'WarningSystem/js/sketch.js' %}"></script>-->
+  <script src="{% static 'WarningSystem/js/speedometer.js' %}"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <!-- Text 2 Speech -->
+  <script src="https://code.responsivevoice.org/responsivevoice.js?key=UGspy01Y"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+  <link rel="stylesheet" type="text/css" href="{% static 'WarningSystem/css/style.css' %}">
+  <meta charset="utf-8" />
+
+</head>
+
+<body onload="drawS(0)">
+  <div class="grid-container">
+    <div>
+      <canvas id="speedometer" width="440" height="220"></canvas>
+      <div id="drawTemp" class="container-fluid" style="padding-left: 145px;">
+        <input type="text" class="text-box" id="txtSpeed" name="txtSpeed" value="20" maxlength="2" />
+        <input type="button" hidden="True" id="subButton" value="Draw" onclick="drawWithInputValue();">
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.querySelector("#txtSpeed").addEventListener("keyup", event => {
+      if (event.key !== "Enter") return; // Use `.key` instead.
+
+      sendTitle();
+
+      function sendTitle(){
+       let speed;
+       let maxSpeed;
+
+          console.log("Inside SendTitle");
+          speed = document.getElementById("txtSpeed").value;
+          $.ajax({
+            url: "{% url 'WarningSystem:print1' %}",
+            data : {
+                'speed': speed,
+            },
+            success: function (data) {
+                //document.getElementById('avg').innerHTML = data["avg"];
+                //document.getElementById('plotImage').innerHTML= data["imagePath"];
+                detected_class = data["class"])
+
+                if detected_class == "30"
+                  maxSpeed = 30;
+                else if detected_class == "school"
+                  maxSpeed = 20;
+
+            }
+       });
+      }
+  /*
+      document.querySelector("#subButton").click();
+      var URL = "{% url 'WarningSystem:print1' %}"
+      var speed = document.getElementById("txtSpeed").value;
+      print(speed)
+      var data = { 'speed': speed, 'csrfmiddlewaretoken': $('input[name="csrfmiddlewaretoken"]').val() };
+      $.post(URL, data);
+      event.preventDefault(); // No need to `return false;`.
+   */
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+html, body {
+  margin: 10pt;
+  padding: 0;
+}
+canvas {
+  display: block;
+}
+.text-box {
+  width: 60px;
+  height: 40px;
+  text-align: center;
+  font-size: 15px;
+  color: #666;
+}
+
+.block {
+  text-align:left;
+}
+.center {
+  margin:auto;
+}
+.video{
+-webkit-box-shadow: 21px 12px 44px -22px rgba(0,0,0,0.75);
+-moz-box-shadow: 21px 12px 44px -22px rgba(0,0,0,0.75);
+box-shadow: 21px 12px 44px -22px rgba(0,0,0,0.75);
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 0.9fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-areas: "video video speed speed" "video video speed speed" "video video alert alert";
+}
+
+.video { grid-area: video; }
+
+.speed { grid-area: speed; }
+
+.alert { grid-area: alert; }
