@@ -49,8 +49,8 @@
                 'speed': speed,
             },
             success: function (data) {
-                //document.getElementById('avg').innerHTML = data["avg"];
-                //document.getElementById('plotImage').innerHTML= data["imagePath"];
+                document.getElementById('avg').innerHTML = data["avg"];
+                document.getElementById('plotImage').innerHTML= data["imagePath"];
                 detected_class = data["class"])
 
                 if detected_class == "30"
